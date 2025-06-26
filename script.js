@@ -14,7 +14,7 @@ function getComputerChoice() {
 // Human choice function
 function getHumanChoice() {
     while (true) {
-        let choice = prompt("Choose between Rock, Paper, and Scissors.");
+        let choice = prompt("Choose between Rock, Paper, and Scissors");
         choice = choice.toLowerCase();
 
         if (choice === "rock" || choice === "paper" || choice === "scissors") {
@@ -67,7 +67,7 @@ function playGame() {
         } else if (roundWinner === "Computer") {
             computerScore++;
         }
-
+        alert(`You picked ${humanChoice} and Computer picked ${computerChoice}`)
         alert(`Current score: You ${humanScore} - ${computerScore} Computer`);
     }
 

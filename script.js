@@ -3,22 +3,25 @@ function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3);
 
     if (choice === 0) {
-        return "Rock";
+        return "rock";
     } else if (choice === 1) {
-        return "Paper";
+        return "paper";
     } else {
-        return "Scissors";
+        return "scissors";
     }
 }
 
 // Human choice function
 function getHumanChoice() {
-    let choice = prompt("Choose between Rock, Paper, and Scissors.");
+    while (true) {
+        let choice = prompt("Choose between Rock, Paper, and Scissors => ");
+        choice = choice.toLowerCase();
 
-    if (choice.toLowerCase() === "rock" || choice.toLowerCase() === "paper" || choice.toLowerCase() === "scissors") {
-        return choice.toLowerCase();
-    } else {
-        alert(`Please enter a valid choice`);
+        if (choice === "rock" || choice === "paper" || choice === "scissors") {
+            return choice;
+        } else {
+            alert(`Please enter a valid choice`);
+        }
     }
 }
 
@@ -31,19 +34,23 @@ function playRound(humanChoice, computerChoice) {
     humanChoice = getHumanChoice();
     computerChoice = getComputerChoice();
 
-    let comparison = humanChoice + "-" + computerChoice;
     let winner = "";
 
-    switch (comparison) {
-        case "rock-scissors" || "paper-rock" || "scissors-paper":
-            winner = "You";
-            humanScore += 1;
-            break;
-        case "scissors-rock" || "rock-paper" || "paper-scissors":
-            winner = "Computer";
-            computerScore += 1;
-            break;
-        default:
-            winner = "Nobody";
+    if (humanChoice === computerChoice) {
+        winner = "Nobody";
+    } else if (
+        (humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper") 
+    ) {
+        winner = "You";
+        humanScore += 1;
+    } else {
+        winner = "Computer";
+        computerScore += 1;
     }
+
+    alert(`You picked ${humanChoice} and the computer ${computerChoice}. ${winner} won this round! The score is (You) ${humanScore} : ${computerScore} (Computer).`)
+
+    return winner;
 }
